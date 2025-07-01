@@ -1,19 +1,11 @@
-variable "ami_value" {
-  description = "value for the ami"
-}
-
-variable "instance_type_value" {
-  description = "value for instance_type"
-}
-
 provider "aws" {
-    region = "us_east-1"
-  
+  region = "us-east-1"
 }
 
-resource "aws_instance" "name" {
-
-    ami = var.ami_value
-    instance_type = var.instance_type_value
-  
+module "ec2_instance" {
+  source = "./modules"
+   ami_value = "ami-020cba7c55df1f615"
+instance_type_value = "t2.micro"
+subsubnet_id = "subnet-0b78827f1bc4ded85"
+security_group_id = "sg-0ea8fd5577cf4810c"
 }
